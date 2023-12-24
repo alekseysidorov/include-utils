@@ -1,0 +1,19 @@
+[workspace]
+members = ["include-utils", "include-utils-macro"]
+resolver = "2"
+
+[workspace.package]
+version = "0.2.1"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+authors = ["Aleksey Sidorov <sauron1987@gmail.com>"]
+
+[workspace.dependencies]
+include-utils-macro = { path = "include-utils-macro" }
+
+syn = "2.0.26"
+quote = "1.0.15"
+proc-macro-error = { version = "1.0.4" }
+proc-macro2 = "1.0.50"
+pretty_assertions = "1.4.0"
+itertools = "0.12.0"
