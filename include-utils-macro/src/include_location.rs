@@ -118,7 +118,7 @@ impl<'a> IncludeLocation<'a> {
                 }
             }
 
-            _ => abort_call_site!("unknown file include range layout"),
+            _ => abort_call_site!("unsupported include range layout"),
         }
     }
 }
