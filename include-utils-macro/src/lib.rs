@@ -1,3 +1,5 @@
+//! Internal proc macro for the `include-utils` crate.
+
 use std::{
     fmt::Display,
     path::{Path, PathBuf},
@@ -113,15 +115,20 @@ fn process_file<F: FnOnce(String, &str) -> String>(
     anchor_processor: F,
 ) -> String {
     let content = match range {
+        // Just copy the entire file content.
         IncludeRange::Full => content,
         IncludeRange::Range { from, to } => {
+            // To avoid confuses we just count line numbers from the one instead of zero.
             let from = from.unwrap_or_default().saturating_sub(1);
-
+            // Just skip the file lines before the `from` line.
             let mut lines = content.lines().skip(from);
             if let Some(to) = to {
-                let to = to - from;
-                lines.take(to).join("\n")
+                // In this case we have an explicit end of file inclusion.
+                // So we have to take `N` lines, where `N = to - from`.
+                let n = to - from;
+                lines.take(n).join("\n")
             } else {
+                // Just include the whole file tail.
                 lines.join("\n")
             }
         }

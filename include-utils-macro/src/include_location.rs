@@ -2,22 +2,29 @@ use proc_macro_error::{abort_call_site, ResultExt};
 
 use crate::err_to_diagnostic;
 
+/// Include location part of the given file path.
 #[derive(Debug, PartialEq, Eq)]
 pub struct IncludeLocation<'a> {
+    /// File path itself.
     pub path: &'a str,
+    /// Range of file lines to include.
     pub range: IncludeRange<'a>,
 }
 
+/// Include range specification follows the mdbook include portion of file chapter.
+///
+/// https://rust-lang.github.io/mdBook/format/mdbook.html#including-portions-of-a-file
 #[derive(Debug, PartialEq, Eq)]
 pub enum IncludeRange<'a> {
+    /// Include the entire file content as is.
     Full,
+    /// Include the specific file part.
     Range {
         from: Option<usize>,
         to: Option<usize>,
     },
-    Anchor {
-        name: &'a str,
-    },
+    /// Include part of file between anchor begin and end.
+    Anchor { name: &'a str },
 }
 
 impl<'a> IncludeRange<'a> {

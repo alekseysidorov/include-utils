@@ -1,5 +1,6 @@
 [package]
 name = "include-utils"
+description = "mdBook-like include macro as the powerful replacement for the standard `include_str` macro."
 version.workspace = true
 edition.workspace = true
 license.workspace = true

@@ -4,7 +4,7 @@ use include_utils_macro::{include_md, include_str_part};
 fn test_include_str_line() {
     assert_eq!(
         include_str_part!("tests/data/markdown_with_header.md:3"),
-        "Some needless line\n"
+        "Some needless line"
     );
 }
 
@@ -36,7 +36,7 @@ fn test_ainclude_str_end() {
 fn test_include_md_anchor_all() {
     assert_eq!(
         include_md!("tests/data/anchor.md:all"),
-        "all text\nconclusion"
+        "all text\n\n\nconclusion"
     )
 }
 

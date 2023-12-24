@@ -1,5 +1,6 @@
 [package]
 name = "include-utils-macro"
+description = "Internal proc macro for the `include-utils` crate."
 version.workspace = true
 edition.workspace = true
 license.workspace = true

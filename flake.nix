@@ -48,7 +48,8 @@
               ];
               text = ''
                 cargo test --all-features --all-targets
-                cargo publish --dry-run
+                cargo publish --dry-run -p include-utils-macro
+                cargo publish --dry-run -p include-utils
               '';
             };
 

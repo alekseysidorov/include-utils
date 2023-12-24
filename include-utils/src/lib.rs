@@ -1,4 +1,5 @@
 //! # Overview
-#![doc = crate::include_str_part!("../README.md:3:4")]
+//!
+#![doc = crate::include_md!("../README.md:description")]
 
 pub use include_utils_macro::{include_md, include_str_part};
