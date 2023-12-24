@@ -1,7 +1,6 @@
 # Include utils
 
-foo foo foo
-ff
+foo foo foo ff
 
 ```rust
 ```

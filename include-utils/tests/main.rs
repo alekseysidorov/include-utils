@@ -1,4 +1,4 @@
-use include_utils_macro::{include_str_part, include_md};
+use include_utils_macro::{include_md, include_str_part};
 
 #[test]
 fn test_include_str_line() {
@@ -32,7 +32,6 @@ fn test_ainclude_str_end() {
     );
 }
 
-
 #[test]
 fn test_include_md_anchor_all() {
     assert_eq!(
@@ -43,8 +42,5 @@ fn test_include_md_anchor_all() {
 
 #[test]
 fn test_include_md_anchor_conclusion() {
-    assert_eq!(
-        include_md!("tests/data/anchor.md:conclusion"),
-        "conclusion"
-    )
+    assert_eq!(include_md!("tests/data/anchor.md:conclusion"), "conclusion")
 }

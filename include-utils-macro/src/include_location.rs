@@ -2,7 +2,6 @@ use proc_macro_error::{abort_call_site, ResultExt};
 
 use crate::err_to_diagnostic;
 
-
 #[derive(Debug, PartialEq, Eq)]
 pub struct IncludeLocation<'a> {
     pub path: &'a str,
