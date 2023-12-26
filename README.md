@@ -17,7 +17,7 @@ But with the [`include_md`] macro you can include only a specific section of the
 file.
 
 _**Note!** Unlike the built-in macro, this macros uses the `CARGO_MANIFEST_DIR`
-as the current directory instead of the directory from which it is called._
+as the current directory instead of the directory from which macro is called._
 
 ## Usage
 

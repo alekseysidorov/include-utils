@@ -62,7 +62,6 @@ pub fn include_md(input: TokenStream) -> TokenStream {
                 }
                 !is_end
             })
-            .filter(|line| !line.starts_with("<!-- ANCHOR"))
             .join("\n");
 
         if !has_anchor {

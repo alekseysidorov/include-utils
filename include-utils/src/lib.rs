@@ -36,7 +36,7 @@
 /// 
 /// See [module][self] documentation.
 pub use include_utils_macro::include_md;
-/// Includes a UTF-8 encoded file as a string.
+/// Includes a part of UTF-8 encoded file as a string.
 /// 
 /// _**Note!** Anchors is not supported by this macro, use specific `include_md` macro to 
 /// include markdown file section._
