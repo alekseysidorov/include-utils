@@ -24,7 +24,7 @@ as the current directory instead of the directory from which macro is called._
 ```rust
 //! # Crate overview
 //! 
-#![doc = include_utils::include_md!("../README.md:description")]
+#![doc = include_utils::include_md!("README.md:description")]
 //!
 //! ## Other section
 ```
@@ -34,4 +34,3 @@ as the current directory instead of the directory from which macro is called._
 <!-- ANCHOR_END: description -->
 
 [`include_str`]: https://doc.rust-lang.org/stable/std/macro.include_str.html
-[`include_md`]: #usage

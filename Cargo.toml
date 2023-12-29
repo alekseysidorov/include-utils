@@ -1,7 +1,8 @@
 [workspace]
-members = ["include-utils", "include-utils-macro"]
+members = ["include-utils-macro"]
 resolver = "2"
 
+# Common workspace metadata.
 [workspace.package]
 version = "0.1.0"
 edition = "2021"
@@ -11,7 +12,7 @@ documentation = "https://docs.rs/include-utils"
 homepage = "https://github.com/alekseysidorov/include-utils"
 
 [workspace.dependencies]
-include-utils-macro = { path = "include-utils-macro" }
+include-utils-macro = { path = "include-utils-macro", version = "0.1.0" }
 
 syn = "2.0.26"
 quote = "1.0.15"
@@ -19,3 +20,22 @@ proc-macro-error = { version = "1.0.4" }
 proc-macro2 = "1.0.50"
 pretty_assertions = "1.4.0"
 itertools = "0.12.0"
+
+# Root package
+[package]
+name = "include-utils"
+description = "mdBook-like include macro as the powerful replacement for the standard `include_str` macro."
+version.workspace = true
+edition.workspace = true
+
+license.workspace = true
+authors.workspace = true
+homepage.workspace = true
+documentation.workspace = true
+categories = ["Development tools"]
+keywords = ["no_std", "documentation", "rustdoc"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+include-utils-macro = { workspace = true }
