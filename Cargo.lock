@@ -16,21 +16,21 @@ checksum = "a26ae43d7bcc3b814de94796a5e736d4029efb0ee900c12e2d54c993ad1a1e07"
 
 [[package]]
 name = "include-utils"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "include-utils-macro",
 ]
 
 [[package]]
 name = "include-utils-macro"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "itertools",
  "pretty_assertions",
  "proc-macro-error",
  "proc-macro2",
  "quote",
- "syn 2.0.42",
+ "syn 2.0.43",
 ]
 
 [[package]]
@@ -106,9 +106,9 @@ dependencies = [
 
 [[package]]
 name = "syn"
-version = "2.0.42"
+version = "2.0.43"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5b7d0a2c048d661a1a59fcd7355baa232f7ed34e0ee4df2eef3c1c1c0d3852d8"
+checksum = "ee659fb5f3d355364e1f3e5bc10fb82068efbf824a1e9d1c9504244a6469ad53"
 dependencies = [
  "proc-macro2",
  "quote",

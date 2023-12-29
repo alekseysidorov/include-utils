@@ -13,7 +13,7 @@ pub struct IncludeLocation<'a> {
 
 /// Include range specification follows the mdbook include portion of file chapter.
 ///
-/// https://rust-lang.github.io/mdBook/format/mdbook.html#including-portions-of-a-file
+/// <https://rust-lang.github.io/mdBook/format/mdbook.html#including-portions-of-a-file>
 #[derive(Debug, PartialEq, Eq)]
 pub enum IncludeRange<'a> {
     /// Include the entire file content as is.

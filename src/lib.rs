@@ -2,7 +2,7 @@
 
 //! # Overview
 //!
-#![doc = crate::include_md!("../README.md:description")]
+#![doc = crate::include_md!("README.md:description")]
 //!
 //! # Partial include modes
 //!

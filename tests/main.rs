@@ -37,10 +37,10 @@ fn test_include_md_anchor_all() {
     assert_eq!(
         include_md!("tests/data/anchor.md:all"),
         "all text\n\n<!-- ANCHOR: conclusion -->\n\nconclusion\n\n<!-- ANCHOR_END: conclusion -->"
-    )
+    );
 }
 
 #[test]
 fn test_include_md_anchor_conclusion() {
-    assert_eq!(include_md!("tests/data/anchor.md:conclusion"), "conclusion")
+    assert_eq!(include_md!("tests/data/anchor.md:conclusion"), "conclusion");
 }
