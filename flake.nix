@@ -78,6 +78,7 @@
           in
           [
             rustToolchains.stable
+            cargo-workspaces
 
             ci-run-tests
             ci-run-lints
