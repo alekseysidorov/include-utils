@@ -4,7 +4,7 @@ resolver = "2"
 
 # Common workspace metadata.
 [workspace.package]
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 authors = ["Aleksey Sidorov <sauron1987@gmail.com>"]
@@ -12,7 +12,7 @@ documentation = "https://docs.rs/include-utils"
 homepage = "https://github.com/alekseysidorov/include-utils"
 
 [workspace.dependencies]
-include-utils-macro = { path = "include-utils-macro", version = "0.1.0" }
+include-utils-macro = { path = "include-utils-macro", version = "0.1.1" }
 
 syn = "2.0.26"
 quote = "1.0.15"
@@ -44,7 +44,7 @@ license.workspace = true
 authors.workspace = true
 homepage.workspace = true
 documentation.workspace = true
-categories = ["Development tools"]
+categories = ["development-tools"]
 keywords = ["no_std", "documentation", "rustdoc"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
