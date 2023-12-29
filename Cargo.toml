@@ -21,6 +21,18 @@ proc-macro2 = "1.0.50"
 pretty_assertions = "1.4.0"
 itertools = "0.12.0"
 
+[workspace.lints.rust]
+missing_docs = "warn"
+missing_debug_implementations = "warn"
+unsafe_code = "deny"
+
+[workspace.lints.rustdoc]
+broken_intra_doc_links = "deny"
+
+[workspace.lints.clippy]
+pedantic = "warn"
+module_name_repetitions = "allow"
+
 # Root package
 [package]
 name = "include-utils"
@@ -39,3 +51,6 @@ keywords = ["no_std", "documentation", "rustdoc"]
 
 [dependencies]
 include-utils-macro = { workspace = true }
+
+[lints]
+workspace = true

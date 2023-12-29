@@ -1,5 +1,7 @@
 //! Internal proc macro for the `include-utils` crate.
 
+#![allow(missing_docs)]
+
 use std::{
     fmt::Display,
     path::{Path, PathBuf},
@@ -26,7 +28,7 @@ pub fn include_str_part(input: TokenStream) -> TokenStream {
     let location = IncludeLocation::parse(&file);
     let file_content = read_file(location.path);
 
-    let processed_content = process_file(file_content, location.range, |_content, _name| {
+    let processed_content = process_file(file_content, &location.range, |_content, _name| {
         proc_macro_error::abort_call_site!("Anchors is not supported for the plain string");
     });
 
@@ -45,7 +47,7 @@ pub fn include_md(input: TokenStream) -> TokenStream {
     let file_content = read_file(location.path);
 
     // TODO Use markdown parser to analyze comments.
-    let processed_content = process_file(file_content, location.range, |content, anchor_name| {
+    let processed_content = process_file(file_content, &location.range, |content, anchor_name| {
         let anchor_begin = format!("<!-- ANCHOR: {anchor_name}");
         let anchor_end = format!("<!-- ANCHOR_END: {anchor_name}");
 
@@ -91,10 +93,10 @@ fn crate_directory() -> PathBuf {
 fn read_file(file_path: impl AsRef<Path>) -> String {
     let full_path = {
         let file_path = file_path.as_ref();
-        let path = if !file_path.is_absolute() {
-            crate_directory().join(file_path)
-        } else {
+        let path = if file_path.is_absolute() {
             file_path.to_owned()
+        } else {
+            crate_directory().join(file_path)
         };
 
         path.canonicalize()
@@ -110,7 +112,7 @@ fn read_file(file_path: impl AsRef<Path>) -> String {
 
 fn process_file<F: FnOnce(String, &str) -> String>(
     content: String,
-    range: IncludeRange<'_>,
+    range: &IncludeRange<'_>,
     anchor_processor: F,
 ) -> String {
     let content = match range {
