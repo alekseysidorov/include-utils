@@ -1,9 +1,5 @@
 [workspace]
-members = [
-    "examples/crate",
-    "examples/workspace", 
-    "include-utils-macro",
-]
+members = ["examples/crate", "examples/workspace", "include-utils-macro"]
 resolver = "2"
 
 # Common workspace metadata.
@@ -54,13 +50,13 @@ documentation.workspace = true
 categories = ["development-tools"]
 keywords = ["no_std", "documentation", "rustdoc"]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
 include-utils-macro = { workspace = true }
 
 [features]
 default = []
+# Enable looking up to the workspace root directory for the included files in addition to the 
+# `CARGO_MANIFEST_PATH`.
 workspace = ["include-utils-macro/workspace"]
 
 [lints]

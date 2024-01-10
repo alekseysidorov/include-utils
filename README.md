@@ -18,10 +18,15 @@ file.
 
 ## Notes
 
-- _Unlike the built-in macro, this macros uses the `CARGO_MANIFEST_DIR`
-  as the current directory instead of the directory from which macro is called._
+- Unlike the built-in macro, this macros uses the `CARGO_MANIFEST_DIR` as the
+  current directory instead of the directory from which macro is called.
 
-- TODO
+- If the `workspace` feature is enabled, then if the file cannot be found
+  relative to the `CARGO_MANIFEST_DIR`, it will be searhed relative to the cargo
+  workspace root directory. It may be useful if you want to store your
+  documentation in the single directory outside the crates. In this case you
+  have to copy included directory to each crate before you publish it to the
+  crates registry.
 
 ## Usage
 

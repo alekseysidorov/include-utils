@@ -47,7 +47,7 @@
                 rustToolchains.stable
               ];
               text = ''
-                cargo test --all-features --all-targets
+                cargo test --workspace --all-features --all-targets
                 # TODO Add cargo publish test with the cargo workspaces
               '';
             };
@@ -58,8 +58,8 @@
                 rustToolchains.stable
               ];
               text = ''
-                cargo clippy --all-features --all --all-targets
-                cargo doc --all-features  --no-deps
+                cargo clippy --workspace --all-features --all --all-targets
+                cargo doc --workspace --all-features  --no-deps
               '';
             };
 
