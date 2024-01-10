@@ -9,7 +9,7 @@ use std::{
 
 use itertools::Itertools;
 use proc_macro::TokenStream;
-use proc_macro_error::{proc_macro_error, Diagnostic, Level, ResultExt};
+use proc_macro_error::{proc_macro_error, Diagnostic, Level, OptionExt, ResultExt};
 use quote::quote;
 use syn::{parse_macro_input, LitStr};
 
@@ -83,26 +83,56 @@ fn err_to_diagnostic(message: impl Display) -> Diagnostic {
     Diagnostic::new(Level::Error, message.to_string())
 }
 
-fn crate_directory() -> PathBuf {
+fn cargo_manifest_dir() -> PathBuf {
     std::env::var("CARGO_MANIFEST_DIR")
         .map_err(err_to_diagnostic)
         .unwrap_or_abort()
         .into()
 }
 
+/// Search for file path relative cargo manifest directory and workspace root directory if `workspace`
+/// feature is enabled.
+fn search_file(file_path: &Path) -> Option<PathBuf> {
+    let manifest_dir = cargo_manifest_dir();
+
+    let search_paths = [
+        manifest_dir.clone(),
+        // Searching for a file also relative the workspace root directory.
+        #[cfg(feature = "workspace")]
+        {
+            let metadata = cargo_metadata::MetadataCommand::new()
+                .manifest_path(manifest_dir.join("Cargo.toml"))
+                .exec()
+                .map_err(err_to_diagnostic)
+                .unwrap_or_abort();
+
+            metadata.workspace_root.into_std_path_buf()
+        },
+    ];
+
+    for search_path in search_paths {
+        let full_path = search_path.join(file_path);
+
+        if full_path.exists() {
+            let full_path = full_path
+                .canonicalize()
+                .map_err(err_to_diagnostic)
+                .unwrap_or_abort();
+            return Some(full_path);
+        }
+    }
+
+    None
+}
+
 fn read_file(file_path: impl AsRef<Path>) -> String {
     let full_path = {
         let file_path = file_path.as_ref();
-        let path = if file_path.is_absolute() {
+        if file_path.is_absolute() {
             file_path.to_owned()
         } else {
-            crate_directory().join(file_path)
-        };
-
-        path.canonicalize()
-            .map_err(|err| format!("path `{path:?}`: {err}"))
-            .map_err(err_to_diagnostic)
-            .unwrap_or_abort()
+            search_file(file_path).expect_or_abort("unable to find path")
+        }
     };
 
     std::fs::read_to_string(full_path)

@@ -1,0 +1,17 @@
+[package]
+name = "example-include-workspace"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+documentation.workspace = true
+homepage.workspace = true
+publish = false
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+include-utils = { workspace = true, features = ["workspace"] }
+
+[lints]
+workspace = true
