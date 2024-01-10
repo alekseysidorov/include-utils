@@ -1,10 +1,14 @@
 [workspace]
-members = ["include-utils-macro"]
+members = [
+    "examples/crate",
+    "examples/workspace", 
+    "include-utils-macro",
+]
 resolver = "2"
 
 # Common workspace metadata.
 [workspace.package]
-version = "0.1.1"
+version = "0.2.0"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 authors = ["Aleksey Sidorov <sauron1987@gmail.com>"]
@@ -12,14 +16,17 @@ documentation = "https://docs.rs/include-utils"
 homepage = "https://github.com/alekseysidorov/include-utils"
 
 [workspace.dependencies]
-include-utils-macro = { path = "include-utils-macro", version = "0.1.1" }
+include-utils = { path = ".", version = "0.2.0", features = [
+], default-features = false }
+include-utils-macro = { path = "include-utils-macro", version = "0.2.0" }
 
-syn = "2.0.26"
-quote = "1.0.15"
+cargo_metadata = "0.18.1"
+itertools = "0.12.0"
+pretty_assertions = "1.4.0"
 proc-macro-error = { version = "1.0.4" }
 proc-macro2 = "1.0.50"
-pretty_assertions = "1.4.0"
-itertools = "0.12.0"
+quote = "1.0.15"
+syn = "2.0.26"
 
 [workspace.lints.rust]
 missing_docs = "warn"
@@ -51,6 +58,10 @@ keywords = ["no_std", "documentation", "rustdoc"]
 
 [dependencies]
 include-utils-macro = { workspace = true }
+
+[features]
+default = []
+workspace = ["include-utils-macro/workspace"]
 
 [lints]
 workspace = true
