@@ -1,5 +1,10 @@
 # Include utils
 
+[![tests](https://github.com/alekseysidorov/include-utils/actions/workflows/ci.yml/badge.svg)](https://github.com/alekseysidorov/include-utils/actions/workflows/ci.yml)
+[![crates.io](https://img.shields.io/crates/v/include-utils.svg)](https://crates.io/crates/include-utils)
+[![Documentation](https://docs.rs/include-utils/badge.svg)](https://docs.rs/include-utils)
+[![MIT/Apache-2 licensed](https://img.shields.io/crates/l/include-utils)](./LICENSE)
+
 A more powerful replacement for the standard `inlcude_str` macros.
 
 <!-- ANCHOR: description -->
