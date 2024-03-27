@@ -16,10 +16,10 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: "Check formatting"
-        run: nix flake check
+        run: nix run ".#ci-check-fmt"
 
       - name: "Run linters"
-        run: nix develop --command ci-run-lints
+        run: nix run ".#ci-lints"
 
   tests:
     strategy:
@@ -38,4 +38,4 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: "Run cargo tests"
-        run: nix develop --command ci-run-tests
+        run: nix run ".#ci-tests"

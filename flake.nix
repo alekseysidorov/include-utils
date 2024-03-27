@@ -60,10 +60,16 @@
             text = ''dprint fmt'';
           };
 
-          fmt_check = writeShellApplication {
-            name = "ci-fmt-check";
+          check_fmt = writeShellApplication {
+            name = "ci-check-fmt";
             runtimeInputs = dprintDeps;
             text = ''dprint check'';
+          };
+
+          check_semver = writeShellApplication {
+            name = "ci-check-semver";
+            runtimeInputs = with pkgs; [ cargo-semver-checks ];
+            text = ''cargo semver-checks'';
           };
 
           tests = writeShellApplication {
@@ -85,10 +91,12 @@
           # Run them all together
           all = writeShellApplication {
             name = "ci-run-all";
-            runtimeInputs = [ ci.lints ci.tests ];
+            runtimeInputs = [ ci.lints ci.tests ci.check_fmt ci.check_semver ];
             text = ''
+              ci-check-fmt
               ci-run-tests
               ci-run-lints
+              ci-check-semver
             '';
           };
         };
@@ -97,7 +105,10 @@
         # for `nix fmt`
         formatter = ci.fmt;
         # for `nix flake check`
-        checks.formatting = ci.fmt_check;
+        # checks = {
+        #   formatting = ci.fmt_check;
+        #   semver = ci.semver_check;
+        # };
 
         devShells.default = pkgs.mkShell {
           nativeBuildInputs = runtimeInputs ++ [
@@ -118,6 +129,8 @@
         packages = {
           ci-lints = ci.lints;
           ci-tests = ci.tests;
+          ci-check-fmt = ci.check_fmt;
+          ci-check-semver = ci.check_semver;
           ci-all = ci.all;
         };
       });

@@ -4,7 +4,7 @@ resolver = "2"
 
 # Common workspace metadata.
 [workspace.package]
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Aleksey Sidorov <sauron1987@gmail.com>"]
 documentation = "https://docs.rs/include-utils"
 edition = "2021"
