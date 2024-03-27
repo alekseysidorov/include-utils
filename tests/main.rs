@@ -25,7 +25,7 @@ fn test_include_str_begin() {
 }
 
 #[test]
-fn test_ainclude_str_end() {
+fn test_include_str_end() {
     assert_eq!(
         include_str_part!("tests/data/markdown_with_header.md:16:"),
         "4. He played soccer with his friends in the park.\n5. The dog barked loudly at the mailman."

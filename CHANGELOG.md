@@ -4,6 +4,10 @@
 
 ## Unreleased
 
+## 0.2.1 27.03.2024
+
+- Fix lints
+
 ## 0.2.0
 
 - Improved workspace support.
