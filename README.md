@@ -37,7 +37,7 @@ file.
 
 ```rust
 //! # Crate overview
-//! 
+//!
 #![doc = include_utils::include_md!("README.md:description")]
 //!
 //! ## Other section

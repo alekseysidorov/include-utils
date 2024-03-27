@@ -5,15 +5,14 @@ resolver = "2"
 # Common workspace metadata.
 [workspace.package]
 version = "0.2.0"
-edition = "2021"
-license = "MIT OR Apache-2.0"
 authors = ["Aleksey Sidorov <sauron1987@gmail.com>"]
 documentation = "https://docs.rs/include-utils"
+edition = "2021"
 homepage = "https://github.com/alekseysidorov/include-utils"
+license = "MIT OR Apache-2.0"
 
 [workspace.dependencies]
-include-utils = { path = ".", version = "0.2.0", features = [
-], default-features = false }
+include-utils = { path = ".", version = "0.2.0", features = [], default-features = false }
 include-utils-macro = { path = "include-utils-macro", version = "0.2.0" }
 
 cargo_metadata = "0.18.1"
@@ -39,23 +38,23 @@ module_name_repetitions = "allow"
 # Root package
 [package]
 name = "include-utils"
-description = "mdBook-like include macro as the powerful replacement for the standard `include_str` macro."
 version.workspace = true
 edition.workspace = true
+description = "mdBook-like include macro as the powerful replacement for the standard `include_str` macro."
 
-license.workspace = true
 authors.workspace = true
-homepage.workspace = true
-documentation.workspace = true
 categories = ["development-tools"]
+documentation.workspace = true
+homepage.workspace = true
 keywords = ["no_std", "documentation", "rustdoc"]
+license.workspace = true
 
 [dependencies]
 include-utils-macro = { workspace = true }
 
 [features]
 default = []
-# Enable looking up to the workspace root directory for the included files in addition to the 
+# Enable looking up to the workspace root directory for the included files in addition to the
 # `CARGO_MANIFEST_PATH`.
 workspace = ["include-utils-macro/workspace"]
 
