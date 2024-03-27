@@ -3,9 +3,7 @@
 Some needless line
 
 ```rust
-fn main() {
-    
-}
+fn main() {}
 ```
 
 ## Some other doc part
