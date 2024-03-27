@@ -78,7 +78,7 @@ impl<'a> IncludeLocation<'a> {
                 Self { path, range }
             }
             // file.md::2
-            [path, first, second] if first.is_empty() => {
+            [path, "", second] => {
                 let to = second
                     .parse()
                     .map_err(err_to_diagnostic)
@@ -90,7 +90,7 @@ impl<'a> IncludeLocation<'a> {
             }
 
             // file.md:2:
-            [path, first, second] if second.is_empty() => {
+            [path, first, ""] => {
                 let from = first
                     .parse()
                     .map_err(err_to_diagnostic)

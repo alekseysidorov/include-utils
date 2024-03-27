@@ -6,7 +6,7 @@
   "exec": {
     "commands": [
       {
-        "command": "rustfmt --edition 2021",
+        "command": "rustfmt-nightly --config-path {{cwd}}/rustfmt.toml",
         "exts": [
           "rs"
         ]
@@ -24,7 +24,8 @@
     "**/node_modules",
     "**/*-lock.json",
     "**/target",
-    "**/direnv"
+    "**/direnv",
+    "tests/data"
   ],
   "plugins": [
     "https://plugins.dprint.dev/typescript-0.89.3.wasm",

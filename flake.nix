@@ -5,11 +5,10 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    treefmt-nix.url = "github:numtide/treefmt-nix";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils, rust-overlay, treefmt-nix }:
+  outputs = { self, nixpkgs, flake-utils, rust-overlay }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         # Setup nixpkgs
@@ -47,7 +46,7 @@
           darwin.apple_sdk.frameworks.SystemConfiguration
         ];
         # Setup dprint deps
-        dprintInputs = with pkgs; [
+        dprintDeps = with pkgs; [
           dprint
           rustfmt-nightly
           nixpkgs-fmt
@@ -57,13 +56,13 @@
         ci = with pkgs; {
           fmt = writeShellApplication {
             name = "ci-fmt";
-            runtimeInputs = dprintInputs;
+            runtimeInputs = dprintDeps;
             text = ''dprint fmt'';
           };
 
           fmt_check = writeShellApplication {
             name = "ci-fmt-check";
-            runtimeInputs = dprintInputs;
+            runtimeInputs = dprintDeps;
             text = ''dprint check'';
           };
 
@@ -101,11 +100,8 @@
         checks.formatting = ci.fmt_check;
 
         devShells.default = pkgs.mkShell {
-          nativeBuildInputs = with pkgs; runtimeInputs ++ [
-            dprint
-            nixpkgs-fmt
-            rustfmt-nightly
-
+          nativeBuildInputs = runtimeInputs ++ [
+            dprintDeps
             ci.all
             ci.lints
             ci.tests
