@@ -16,7 +16,7 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: "Check formatting"
-        run: nix run ".#ci-check-fmt"
+        run: nix fmt
 
       - name: "Run linters"
         run: nix run ".#ci-lints"
