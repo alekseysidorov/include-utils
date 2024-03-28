@@ -13,8 +13,8 @@
 - Improved workspace support.
 
   If the `workspace` feature is enabled, then if the file cannot be found
-  relative to the `CARGO_MANIFEST_DIR`, it will be searched relative to the cargo
-  workspace root directory.
+  relative to the `CARGO_MANIFEST_DIR`, it will be searched relative to the
+  cargo workspace root directory.
 
 ## 0.1.1
 
