@@ -12,7 +12,8 @@ homepage = "https://github.com/alekseysidorov/include-utils"
 license = "MIT OR Apache-2.0"
 
 [workspace.dependencies]
-include-utils = { path = ".", version = "0.2.0", features = [], default-features = false }
+include-utils = { path = ".", version = "0.2.0", features = [
+], default-features = false }
 include-utils-macro = { path = "include-utils-macro", version = "0.2.0" }
 
 cargo_metadata = "0.18.1"
