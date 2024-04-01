@@ -6,7 +6,7 @@ description = "Internal proc macro for the `include-utils` crate."
 
 authors.workspace = true
 documentation.workspace = true
-homepage.workspace = true
+repository.workspace = true
 license.workspace = true
 
 [lib]

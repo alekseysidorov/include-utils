@@ -8,7 +8,7 @@ version = "0.2.1"
 authors = ["Aleksey Sidorov <sauron1987@gmail.com>"]
 documentation = "https://docs.rs/include-utils"
 edition = "2021"
-homepage = "https://github.com/alekseysidorov/include-utils"
+repository = "https://github.com/alekseysidorov/include-utils"
 license = "MIT OR Apache-2.0"
 
 [workspace.dependencies]
@@ -46,7 +46,7 @@ description = "mdBook-like include macro as the powerful replacement for the sta
 authors.workspace = true
 categories = ["development-tools"]
 documentation.workspace = true
-homepage.workspace = true
+repository.workspace = true
 keywords = ["no_std", "documentation", "rustdoc"]
 license.workspace = true
 
