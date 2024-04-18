@@ -48,28 +48,28 @@ checksum = "a26ae43d7bcc3b814de94796a5e736d4029efb0ee900c12e2d54c993ad1a1e07"
 
 [[package]]
 name = "example-include-crate"
-version = "0.2.1"
+version = "0.2.2"
 dependencies = [
  "include-utils",
 ]
 
 [[package]]
 name = "example-include-workspace"
-version = "0.2.1"
+version = "0.2.2"
 dependencies = [
  "include-utils",
 ]
 
 [[package]]
 name = "include-utils"
-version = "0.2.1"
+version = "0.2.2"
 dependencies = [
  "include-utils-macro",
 ]
 
 [[package]]
 name = "include-utils-macro"
-version = "0.2.1"
+version = "0.2.2"
 dependencies = [
  "cargo_metadata",
  "itertools",
