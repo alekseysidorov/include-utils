@@ -4,6 +4,10 @@
 
 ## Unreleased
 
+## 0.2.2 18.04.2024
+
+- Update `homepage` to `repository` in cargo manifest files.
+
 ## 0.2.1 27.03.2024
 
 - Fix lints

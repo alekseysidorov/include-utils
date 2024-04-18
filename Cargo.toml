@@ -4,7 +4,7 @@ resolver = "2"
 
 # Common workspace metadata.
 [workspace.package]
-version = "0.2.1"
+version = "0.2.2"
 authors = ["Aleksey Sidorov <sauron1987@gmail.com>"]
 documentation = "https://docs.rs/include-utils"
 edition = "2021"
@@ -12,8 +12,7 @@ repository = "https://github.com/alekseysidorov/include-utils"
 license = "MIT OR Apache-2.0"
 
 [workspace.dependencies]
-include-utils = { path = ".", version = "0.2.0", features = [
-], default-features = false }
+include-utils = { path = ".", version = "0.2.0", default-features = false }
 include-utils-macro = { path = "include-utils-macro", version = "0.2.0" }
 
 cargo_metadata = "0.18.1"
