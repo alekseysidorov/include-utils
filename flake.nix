@@ -78,7 +78,7 @@
         semver_checks = writeShellApplication {
           name = "ci-run-semver-checks";
           runtimeInputs = with pkgs; [
-            rustToolchains.stable
+            rustToolchains.msrv
             cargo-semver-checks
           ] ++ runtimeInputs;
           text = ''cargo semver-checks'';
