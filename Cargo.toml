@@ -4,7 +4,7 @@ resolver = "2"
 
 # Common workspace metadata.
 [workspace.package]
-version = "0.2.2"
+version = "0.2.3"
 authors = ["Aleksey Sidorov <sauron1987@gmail.com>"]
 documentation = "https://docs.rs/include-utils"
 edition = "2021"
@@ -12,16 +12,16 @@ repository = "https://github.com/alekseysidorov/include-utils"
 license = "MIT OR Apache-2.0"
 
 [workspace.dependencies]
-include-utils = { path = ".", version = "0.2.0", default-features = false }
-include-utils-macro = { path = "include-utils-macro", version = "0.2.0" }
+include-utils = { path = ".", version = "0.2.3", default-features = false }
+include-utils-macro = { path = "include-utils-macro", version = "0.2.3" }
 
 cargo_metadata = "0.18.1"
-itertools = "0.12.0"
-pretty_assertions = "1.4.0"
-proc-macro-error = { version = "1.0.4" }
-proc-macro2 = "1.0.50"
-quote = "1.0.15"
-syn = "2.0.26"
+itertools = "0.13"
+pretty_assertions = "1.4.1"
+proc-macro2 = "1.0"
+quote = "1.0"
+syn = "2.0.87"
+manyhow = "0.11"
 
 [workspace.lints.rust]
 missing_docs = "warn"
@@ -32,7 +32,7 @@ unsafe_code = "deny"
 broken_intra_doc_links = "deny"
 
 [workspace.lints.clippy]
-pedantic = "warn"
+pedantic = { level = "warn", priority = -1 }
 module_name_repetitions = "allow"
 
 # Root package

@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -25,6 +25,7 @@
           rust-overlay.overlays.default
           (final: prev: {
             rustToolchains = {
+              msrv = prev.rust-bin.stable."1.75.0".default;
               stable = prev.rust-bin.stable.latest.default.override {
                 extensions = [
                   "rust-src"
@@ -38,8 +39,8 @@
       };
       # Setup runtime dependencies
       runtimeInputs = with pkgs; [
-        rustToolchains.stable
-        openssl.dev
+        cargo-nextest
+        openssl
         pkg-config
       ]
       # Some additional libraries for the Darwin platform
@@ -53,24 +54,33 @@
       ci = with pkgs; {
         tests = writeShellApplication {
           name = "ci-run-tests";
-          inherit runtimeInputs;
+          runtimeInputs = with pkgs; [ rustToolchains.msrv ] ++ runtimeInputs;
           text = ''
-            cargo test --workspace --all-features --all-targets
+            cargo nextest run --workspace --all-targets --no-default-features
+            cargo nextest run --workspace --all-targets --all-features
+            
+            cargo test --workspace --doc --no-default-features
+            cargo test --workspace --doc --all-features
           '';
         };
 
         lints = writeShellApplication {
           name = "ci-run-lints";
-          inherit runtimeInputs;
+          runtimeInputs = with pkgs; [ rustToolchains.stable ] ++ runtimeInputs;
           text = ''
-            cargo clippy --workspace --all-features --all --all-targets
-            cargo doc --workspace --all-features  --no-deps
+            cargo clippy --workspace --all --no-default-features
+            cargo clippy --workspace --all --all-targets --all-features
+            cargo doc --workspace --no-deps --no-default-features
+            cargo doc --workspace --no-deps --all-features
           '';
         };
 
-        check_semver = writeShellApplication {
-          name = "ci-check-semver";
-          runtimeInputs = with pkgs; [ cargo-semver-checks ];
+        semver_checks = writeShellApplication {
+          name = "ci-run-semver-checks";
+          runtimeInputs = with pkgs; [
+            rustToolchains.stable
+            cargo-semver-checks
+          ] ++ runtimeInputs;
           text = ''cargo semver-checks'';
         };
 
@@ -79,11 +89,21 @@
           name = "ci-run-all";
           runtimeInputs = [ ci.lints ci.tests ];
           text = ''
-            ci-run-tests
             ci-run-lints
+            ci-run-tests
+            ci-run-semver-checks
           '';
         };
       };
+
+      mkCommand = shell: command:
+        pkgs.writeShellApplication {
+          name = "cmd-${shell}-${command}";
+          runtimeInputs = [ pkgs.nix ];
+          text = ''nix develop ".#${shell}" --command "${command}"'';
+        };
+
+      mkCommandDefault = mkCommand "default";
     in
     {
       # for `nix fmt`
@@ -92,11 +112,12 @@
       checks.formatting = treefmt.check self;
 
       devShells.default = pkgs.mkShell {
-        nativeBuildInputs = runtimeInputs ++ [
+        nativeBuildInputs = with pkgs; runtimeInputs ++ [
+          rustToolchains.stable
           ci.all
           ci.lints
           ci.tests
-          ci.check_semver
+          ci.semver_checks
         ];
       };
 
@@ -108,10 +129,20 @@
       };
 
       packages = {
-        ci-lints = ci.lints;
-        ci-tests = ci.tests;
-        ci-all = ci.all;
-        ci-check-semver = ci.check_semver;
+        ci-lints = mkCommandDefault "ci-run-lints";
+        ci-tests = mkCommandDefault "ci-run-tests";
+        ci-semver-checks = mkCommandDefault "ci-run-semver-checks";
+        ci-all = mkCommandDefault "ci-run-all";
+        git-install-hooks = pkgs.writeShellScriptBin "install-git-hook"
+          ''
+            echo "-> Installing pre-commit hook"
+            echo "nix flake check" >> "$PWD/.git/hooks/pre-commit"
+            chmod +x "$PWD/.git/hooks/pre-commit"
+
+            echo "-> Installing pre-push hook"
+            echo "nix run \".#ci-all\"" >> "$PWD/.git/hooks/pre-push"
+            chmod +x "$PWD/.git/hooks/pre-push"
+          '';
       };
     });
 }
