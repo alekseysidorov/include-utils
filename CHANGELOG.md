@@ -1,8 +1,8 @@
 # Changelog
 
--
-
 ## Unreleased
+
+- Replace unmaintained `proc-macro-error` crate by the `manyhow` one.
 
 ## 0.2.2 18.04.2024
 

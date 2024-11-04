@@ -1,7 +1,3 @@
-use proc_macro_error::{abort_call_site, ResultExt};
-
-use crate::err_to_diagnostic;
-
 /// Include location part of the given file path.
 #[derive(Debug, PartialEq, Eq)]
 pub struct IncludeLocation<'a> {
@@ -58,10 +54,10 @@ impl<'a> IncludeRange<'a> {
 }
 
 impl<'a> IncludeLocation<'a> {
-    pub fn parse(s: &'a str) -> Self {
+    pub fn parse(s: &'a str) -> manyhow::Result<Self> {
         let parts = s.split(':').collect::<Vec<_>>();
 
-        match &parts[..] {
+        let value = match &parts[..] {
             // file.md
             [path] => Self {
                 path,
@@ -79,10 +75,9 @@ impl<'a> IncludeLocation<'a> {
             }
             // file.md::2
             [path, "", second] => {
-                let to = second
-                    .parse()
-                    .map_err(err_to_diagnostic)
-                    .expect_or_abort("unable to parse 'to' include range component");
+                let to = second.parse().map_err(|err| {
+                    manyhow::error_message!("unable to parse 'to' include range component. {err}")
+                })?;
                 Self {
                     path,
                     range: IncludeRange::left(to),
@@ -91,10 +86,9 @@ impl<'a> IncludeLocation<'a> {
 
             // file.md:2:
             [path, first, ""] => {
-                let from = first
-                    .parse()
-                    .map_err(err_to_diagnostic)
-                    .expect_or_abort("unable to parse 'from' include range component");
+                let from = first.parse().map_err(|err| {
+                    manyhow::error_message!("unable to parse 'from' include range component. {err}")
+                })?;
                 Self {
                     path,
                     range: IncludeRange::right(from),
@@ -103,14 +97,12 @@ impl<'a> IncludeLocation<'a> {
 
             // file.md:2:10
             [path, first, second] => {
-                let from = first
-                    .parse()
-                    .map_err(err_to_diagnostic)
-                    .expect_or_abort("unable to parse 'from' include range component");
-                let to = second
-                    .parse()
-                    .map_err(err_to_diagnostic)
-                    .expect_or_abort("unable to parse 'to' include range component");
+                let from = first.parse().map_err(|err| {
+                    manyhow::error_message!("unable to parse 'from' include range component. {err}")
+                })?;
+                let to = second.parse().map_err(|err| {
+                    manyhow::error_message!("unable to parse 'to' include range component. {err}")
+                })?;
 
                 Self {
                     path,
@@ -118,8 +110,9 @@ impl<'a> IncludeLocation<'a> {
                 }
             }
 
-            _ => abort_call_site!("unsupported include range layout"),
-        }
+            _ => manyhow::bail!("unsupported include range layout"),
+        };
+        Ok(value)
     }
 }
 
@@ -183,7 +176,7 @@ fn test_parse_include_location() {
     ];
 
     for (path, expected) in test_cases {
-        let actual = IncludeLocation::parse(path);
+        let actual = IncludeLocation::parse(path).unwrap();
         assert_eq!(actual, expected);
     }
 }
