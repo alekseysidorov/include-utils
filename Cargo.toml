@@ -16,7 +16,7 @@ rust-version = "1.75"
 include-utils = { path = ".", version = "0.2.3", default-features = false }
 include-utils-macro = { path = "include-utils-macro", version = "0.2.3" }
 
-cargo_metadata = "0.19.1"
+cargo_metadata = "0.18.1"
 itertools = "0.13"
 pretty_assertions = "1.4.1"
 proc-macro2 = "1.0"
