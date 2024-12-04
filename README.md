@@ -48,3 +48,4 @@ file.
 <!-- ANCHOR_END: description -->
 
 [`include_str`]: https://doc.rust-lang.org/stable/std/macro.include_str.html
+[`include_md`]: https://docs.rs/include-utils/latest/include_utils/macro.include_md.html
