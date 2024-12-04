@@ -1,3 +1,5 @@
+//! Tests for include-utils-macro
+
 use include_utils_macro::{include_md, include_str_part};
 
 #[test]

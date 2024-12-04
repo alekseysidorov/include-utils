@@ -23,7 +23,7 @@ pub enum IncludeRange<'a> {
     Anchor { name: &'a str },
 }
 
-impl<'a> IncludeRange<'a> {
+impl IncludeRange<'_> {
     fn line(num: usize) -> Self {
         Self::Range {
             from: Some(num),
