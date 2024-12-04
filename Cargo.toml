@@ -10,13 +10,13 @@ documentation = "https://docs.rs/include-utils"
 edition = "2021"
 repository = "https://github.com/alekseysidorov/include-utils"
 license = "MIT OR Apache-2.0"
-rust-version = "1.75"
+rust-version = "1.78"
 
 [workspace.dependencies]
-include-utils = { path = ".", version = "0.2.3", default-features = false }
-include-utils-macro = { path = "include-utils-macro", version = "0.2.3" }
+include-utils = { path = ".", version = "0.2.4", default-features = false }
+include-utils-macro = { path = "include-utils-macro", version = "0.2.4" }
 
-cargo_metadata = "0.18.1"
+cargo_metadata = "0.19.1"
 itertools = "0.13"
 pretty_assertions = "1.4.1"
 proc-macro2 = "1.0"
