@@ -5,7 +5,7 @@
 [![Documentation](https://docs.rs/include-utils/badge.svg)](https://docs.rs/include-utils)
 [![MIT/Apache-2 licensed](https://img.shields.io/crates/l/include-utils)](./LICENSE)
 
-A more powerful replacement for the standard `inlcude_str` macros.
+A more powerful replacement for the standard `include_str` macros.
 
 <!-- ANCHOR: description -->
 
@@ -27,8 +27,8 @@ file.
   current directory instead of the directory from which macro is called.
 
 - If the `workspace` feature is enabled, then if the file cannot be found
-  relative to the `CARGO_MANIFEST_DIR`, it will be searhed relative to the cargo
-  workspace root directory. It may be useful if you want to store your
+  relative to the `CARGO_MANIFEST_DIR`, it will be searched relative to the
+  cargo workspace root directory. It may be useful if you want to store your
   documentation in the single directory outside the crates. In this case you
   have to copy included directory to each crate before you publish it to the
   crates registry.
