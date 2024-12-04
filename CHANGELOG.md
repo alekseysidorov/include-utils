@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+## 0.2.3 04.12.2024
+
+- Fix typos in the documentation.
+
+- Bump minimum supported Rust version to `1.78`.
+
+## 0.2.3 04.11.2024
+
 - Replace unmaintained `proc-macro-error` crate by the `manyhow` one.
 
 ## 0.2.2 18.04.2024
