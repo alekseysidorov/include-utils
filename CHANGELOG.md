@@ -22,7 +22,7 @@
 
 ## 0.1.1
 
-- Fix lints and `inlcude-utils` crate category.
+- Fix lints and `include-utils` crate category.
 
 ## 0.1.0
 
