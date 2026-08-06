@@ -8,25 +8,25 @@ and this project adheres to
 
 ## Unreleased
 
-## [0.2.5] 04.12.2024
+## [0.2.5] 2026.08.06
 
 - Bump minimum supported Rust version to `1.92`. Update crate dependencies.
 
-## [0.2.4] 04.12.2024
+## [0.2.4] 2024.12.04
 
 - Fix typos in the documentation.
 
 - Bump minimum supported Rust version to `1.78`.
 
-## [0.2.3] 04.11.2024
+## [0.2.3] 2024.11.04
 
 - Replace unmaintained `proc-macro-error` crate by the `manyhow` one.
 
-## [0.2.2] 18.04.2024
+## [0.2.2] 2024.04.18
 
 - Update `homepage` to `repository` in cargo manifest files.
 
-## [0.2.1] 27.03.2024
+## [0.2.1] 2024.03.27
 
 - Fix lints
 
