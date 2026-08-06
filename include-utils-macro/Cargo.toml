@@ -4,7 +4,6 @@ version.workspace = true
 edition.workspace = true
 description = "Internal proc macro for the `include-utils` crate."
 
-authors.workspace = true
 documentation.workspace = true
 repository.workspace = true
 license.workspace = true
@@ -13,17 +12,17 @@ rust-version.workspace = true
 [lib]
 proc-macro = true
 
-[dependencies]
-cargo_metadata = { workspace = true, optional = true }
-itertools = { workspace = true }
-manyhow = { workspace = true }
-proc-macro2 = { workspace = true }
-quote = { workspace = true }
-syn = { workspace = true }
-
 [features]
 default = []
 workspace = ["dep:cargo_metadata"]
+
+[dependencies]
+cargo_metadata = { workspace = true, optional = true }
+itertools.workspace = true
+manyhow.workspace = true
+proc-macro2.workspace = true
+quote.workspace = true
+syn.workspace = true
 
 [lints]
 workspace = true
