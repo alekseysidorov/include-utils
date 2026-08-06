@@ -3,7 +3,6 @@ name = "example-include-workspace"
 
 rust-version.workspace = true
 version.workspace = true
-authors.workspace = true
 documentation.workspace = true
 edition.workspace = true
 repository.workspace = true

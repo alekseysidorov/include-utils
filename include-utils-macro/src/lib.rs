@@ -72,8 +72,8 @@ fn cargo_manifest_dir() -> manyhow::Result<PathBuf> {
     Ok(dir.into())
 }
 
-/// Search for file path relative cargo manifest directory and workspace root directory if `workspace`
-/// feature is enabled.
+/// Search for file path relative cargo manifest directory and workspace root directory if
+/// `workspace` feature is enabled.
 fn search_file(file_path: &Path) -> manyhow::Result<PathBuf> {
     let manifest_dir = cargo_manifest_dir()?;
 

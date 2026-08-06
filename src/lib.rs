@@ -1,7 +1,6 @@
 #![no_std]
 
 //! # Overview
-//!
 #![doc = crate::include_md!("README.md:description")]
 //!
 //! # Partial include modes

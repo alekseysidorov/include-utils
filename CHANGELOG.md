@@ -8,6 +8,10 @@ and this project adheres to
 
 ## Unreleased
 
+## [0.2.5] 04.12.2024
+
+- Bump minimum supported Rust version to `1.92`.
+
 ## [0.2.4] 04.12.2024
 
 - Fix typos in the documentation.

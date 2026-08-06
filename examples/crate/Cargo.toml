@@ -3,12 +3,10 @@ name = "example-include-crate"
 
 rust-version.workspace = true
 version.workspace = true
-authors.workspace = true
 documentation.workspace = true
 edition.workspace = true
 repository.workspace = true
 license.workspace = true
-resolver = "2"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
