@@ -10,7 +10,7 @@ and this project adheres to
 
 ## [0.2.5] 04.12.2024
 
-- Bump minimum supported Rust version to `1.92`.
+- Bump minimum supported Rust version to `1.92`. Update crate dependencies.
 
 ## [0.2.4] 04.12.2024
 
