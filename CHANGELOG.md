@@ -8,6 +8,15 @@ and this project adheres to
 
 ## Unreleased
 
+## [0.2.6] 2026.08.18
+
+- Prevent `cargo metadata` from resolving dependencies and accessing the network
+  during proc macro expansion by calling `no_deps()` and setting the current
+  directory to the manifest directory. This makes the `workspace` feature work
+  in offline and restricted environments.
+
+  [#17](https://github.com/alekseysidorov/include-utils/issues/17)
+
 ## [0.2.5] 2026.08.06
 
 - Bump minimum supported Rust version to `1.92`. Update crate dependencies.
