@@ -4,7 +4,7 @@ resolver = "3"
 
 # Common workspace metadata.
 [workspace.package]
-version = "0.2.5"
+version = "0.2.6"
 documentation = "https://docs.rs/include-utils"
 edition = "2024"
 repository = "https://github.com/alekseysidorov/include-utils"
