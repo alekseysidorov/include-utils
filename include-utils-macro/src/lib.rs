@@ -84,6 +84,8 @@ fn search_file(file_path: &Path) -> manyhow::Result<PathBuf> {
         {
             let metadata = cargo_metadata::MetadataCommand::new()
                 .manifest_path(manifest_dir.join("Cargo.toml"))
+                .current_dir(manifest_dir)
+                .no_deps()
                 .exec()
                 .map_err(|err| {
                     manyhow::error_message!("Unable to execute cargo metadata command. {err}")
