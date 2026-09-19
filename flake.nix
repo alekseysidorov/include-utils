@@ -71,6 +71,23 @@
               };
               cargoArtifacts = craneLib.buildDepsOnly commonArgs;
               package = craneLib.buildPackage (commonArgs // { inherit cargoArtifacts; });
+              # Retain release checks used by the repositories' existing push hook.
+              # This cargo-semver-checks release parses rustdoc only through v57.
+              # Rust 1.96 emits v57; project build/test checks remain on latest stable.
+              semverToolchain = pkgs.rust-bin.stable."1.96.0".default;
+              semverCheck = pkgs.writeShellApplication {
+                name = "check-cargo-semver";
+                runtimeInputs = [
+                  semverToolchain
+                  pkgs.cargo-semver-checks
+                ];
+                text = ''exec cargo semver-checks --workspace "$@"'';
+              };
+              publishCheck = pkgs.writeShellApplication {
+                name = "check-cargo-publish";
+                runtimeInputs = [ rustToolchain ];
+                text = ''exec cargo publish --workspace --dry-run --allow-dirty "$@"'';
+              };
             in
             {
               treefmt = {
@@ -84,7 +101,11 @@
                   taplo.enable = true;
                 };
               };
-              packages.default = package;
+              packages = {
+                default = package;
+                check-cargo-semver = semverCheck;
+                check-cargo-publish = publishCheck;
+              };
               checks = {
                 build = package;
                 test = craneLib.cargoTest (
