@@ -57,7 +57,7 @@
               # Keep the minimum compiler explicit while following the current stable channel.
               rustVersions = {
                 msrv = "1.92.0";
-                stable = "latest";
+                stable = "1.96.0";
               };
 
               # Checks use MSRV; development follows stable, and nightly supplies only rustfmt.
