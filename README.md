@@ -3,7 +3,7 @@
 [![tests](https://github.com/alekseysidorov/include-utils/actions/workflows/ci.yml/badge.svg)](https://github.com/alekseysidorov/include-utils/actions/workflows/ci.yml)
 [![crates.io](https://img.shields.io/crates/v/include-utils.svg)](https://crates.io/crates/include-utils)
 [![Documentation](https://docs.rs/include-utils/badge.svg)](https://docs.rs/include-utils)
-[![MIT/Apache-2 licensed](https://img.shields.io/crates/l/include-utils)](./LICENSE)
+[![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](#license)
 
 A more powerful replacement for the standard `include_str` macros.
 
@@ -49,3 +49,9 @@ file.
 
 [`include_str`]: https://doc.rust-lang.org/stable/std/macro.include_str.html
 [`include_md`]: https://docs.rs/include-utils/latest/include_utils/macro.include_md.html
+
+## License
+
+Licensed under either the [Apache License, Version 2.0](LICENSE-APACHE) or the
+[MIT license](LICENSE-MIT), at your option. Both license texts are included in
+the published crates.
