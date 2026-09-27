@@ -1,0 +1,24 @@
+[package]
+name = "include-utils"
+version.workspace = true
+edition.workspace = true
+description = "mdBook-like include macro as the powerful replacement for the standard `include_str` macro."
+
+categories = ["development-tools"]
+documentation.workspace = true
+repository.workspace = true
+keywords = ["no_std", "documentation", "rustdoc"]
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+include-utils-macro.workspace = true
+
+[features]
+default = []
+# Enable looking up to the workspace root directory for the included files in addition to the
+# `CARGO_MANIFEST_PATH`.
+workspace = ["include-utils-macro/workspace"]
+
+[lints]
+workspace = true
