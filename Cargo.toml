@@ -1,26 +1,33 @@
 [workspace]
-members = ["examples/crate", "examples/workspace", "include-utils-macro"]
+members = [
+  "crates/include-utils",
+  "crates/include-utils-macro",
+  "examples/crate",
+  "examples/workspace",
+]
 resolver = "3"
 
-# Common workspace metadata.
 [workspace.package]
-version = "0.2.6"
+version = "0.2.7"
 documentation = "https://docs.rs/include-utils"
 edition = "2024"
 repository = "https://github.com/alekseysidorov/include-utils"
 license = "MIT OR Apache-2.0"
 rust-version = "1.92"
 
+[workspace.metadata.crane]
+name = "include-utils"
+
 [workspace.dependencies]
-include-utils = { path = ".", version = "0.2", default-features = false }
-include-utils-macro = { path = "include-utils-macro", version = "0.2" }
+include-utils = { path = "crates/include-utils", version = "0.2.7", default-features = false }
+include-utils-macro = { path = "crates/include-utils-macro", version = "0.2.7" }
 
 cargo_metadata = "0.23.1"
-itertools = "0.15"
+itertools = "0.15.0"
 pretty_assertions = "1.4.1"
-quote = "1.0"
-syn = "3.0.3"
-manyhow = "0.14"
+quote = "1.0.47"
+syn = "3.0.6"
+manyhow = "0.14.0"
 proc-macro2 = "1.0.107"
 
 [workspace.lints.rust]
@@ -34,29 +41,3 @@ broken_intra_doc_links = "deny"
 [workspace.lints.clippy]
 pedantic = { level = "warn", priority = -1 }
 module_name_repetitions = "allow"
-
-# Root package
-[package]
-name = "include-utils"
-version.workspace = true
-edition.workspace = true
-description = "mdBook-like include macro as the powerful replacement for the standard `include_str` macro."
-
-categories = ["development-tools"]
-documentation.workspace = true
-repository.workspace = true
-keywords = ["no_std", "documentation", "rustdoc"]
-license.workspace = true
-rust-version.workspace = true
-
-[dependencies]
-include-utils-macro.workspace = true
-
-[features]
-default = []
-# Enable looking up to the workspace root directory for the included files in addition to the
-# `CARGO_MANIFEST_PATH`.
-workspace = ["include-utils-macro/workspace"]
-
-[lints]
-workspace = true

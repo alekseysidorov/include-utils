@@ -8,6 +8,15 @@ and this project adheres to
 
 ## Unreleased
 
+## [0.2.7] 2026.09.27
+
+- Move the runtime and procedural macro packages under `crates/` in the
+  workspace.
+- Align the proc-macro dependency requirements with the current releases,
+  including `manyhow 0.14.0` and `syn 3.0.6`.
+- Add shared workspace metadata for Crane and keep the workspace package layout
+  explicit.
+
 ## [0.2.6] 2026.08.18
 
 - Prevent `cargo metadata` from resolving dependencies and accessing the network

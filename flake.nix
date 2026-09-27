@@ -86,6 +86,8 @@
               packages = {
                 # Cargo package itself.
                 default = rustDev.craneLib.buildPackage {
+                  pname = "include-utils";
+                  version = "0.2.7";
                   inherit src;
                   strictDeps = true;
                   cargoVendorDir = rustDev.craneLib.vendorCargoDeps { inherit src; };
